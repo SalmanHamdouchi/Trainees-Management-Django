@@ -1,0 +1,85 @@
+#ajout-form {
+    padding: 25px;
+    background-color: #fff;
+    box-shadow: 0px 0px 13px 0px rgba(58, 58, 59, 0.1);
+}
+
+#ajout {
+    margin-left: 0;
+    width: 85%;
+    margin: 0 auto;
+    margin-left: 57px;
+}
+
+#ajout td {
+    text-align: right;
+}
+
+#ajout input {
+    width: 92%;
+    height: 18px;
+    padding: .65rem 1rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #646c9a;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #e2e5ec;
+    border-radius: 4px;
+    outline: none;
+    margin: 10px 0;
+    transition: .3s border;
+    font-family: quicksand;
+}
+
+.ajouter input[type=submit] {
+    width: unset;
+    height: unset;
+    color: #fff;
+    background-color: #3d4fa9;
+    font-size: 14px;
+    transition: all .5s;
+    outline: none;
+    border: none;
+    padding: 13px 18px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: quicksand !important;
+    margin-right: 20px;
+    cursor: pointer;
+    transition: all .5s;
+}
+
+.ajouter {
+    width: fit-content;
+    margin: 0 auto;
+    margin-top: 25px;
+}
+
+.ajouter input[type=submit]:hover {
+    background-color: #28336b;
+
+}
+
+#ajout label {
+    text-align: right;
+    display: inline;
+    color: #3a3f5a;
+    font-size: 16px;
+    padding-right: 15px;
+}
+
+#text-left {
+    text-align: left !important;
+    margin: 10px;
+}
+
+.disp-none {
+    display: none;
+}
+
+label[for=id_cv] {
+    display: inline-block !important;
+    margin-top: 1.7px;
+}

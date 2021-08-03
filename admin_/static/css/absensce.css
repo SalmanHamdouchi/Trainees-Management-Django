@@ -1,0 +1,68 @@
+#absensce-form {
+    padding: 25px;
+    background-color: #fff;
+    box-shadow: 0px 0px 13px 0px rgba(58, 58, 59, 0.1);
+}
+
+#absensce-form ul li {
+    margin-bottom: 8px;
+    margin-left: 15px;
+}
+
+#absensce-form ul {
+    list-style: none;
+    display: inline;
+}
+
+#absensce-form ul li label {
+    margin-top: 0;
+    display: inline;
+}
+
+#absensce-form label {
+    padding-right: 20px;
+}
+
+#absensce-form input[type=text],
+#absensce-form input[type=date] {
+    height: 18px;
+    padding: .65rem 1rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #e2e5ec;
+    border-radius: 4px;
+    outline: none;
+    margin: 10px 0;
+    margin-right: 20px;
+}
+
+label[for="id_justifiee_0"] {
+    margin-top: 20px;
+    display: block;
+}
+
+#absensce-form input[type=submit] {
+    color: #fff;
+    background-color: #3d4fa9;
+    font-size: 14px;
+    transition: all .5s;
+    outline: none;
+    border: none;
+    padding: 13px 18px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: quicksand !important;
+    margin-right: 20px;
+    cursor: pointer;
+    transition: all .5s;
+    margin-top: 15px;
+}
+
+#absensce-form input[type=submit]:hover {
+    background-color: #28336b;
+
+}

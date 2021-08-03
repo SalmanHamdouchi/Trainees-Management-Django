@@ -1,0 +1,102 @@
+{% extends 'admin_/layout.html' %}
+{% load static %}
+{% block title %}Modifier Un Stagiaire{% endblock %}
+
+{% block updateform %}
+<div class="topBar">
+    <ul>
+        <a href="{% url 'profile' %}">
+            <li class="admin">
+                <p id="greeting">Hi, {{prenom}}</p>
+                <img src="{{image}}" alt="">
+            </li>
+        </a>
+        <a href="{% url 'logout' %}">
+            <li>
+                <p class="log-out">Log Out</p>
+            </li>
+        </a>
+    </ul>
+</div>
+<div class="pd25">
+    <div class="title">
+        <p>
+            Modification D'un Stagiaire
+        </p>
+    </div>
+    <div class="stag-img-container">
+        <div class="sub-container">
+            <p>
+                Image :
+            </p>
+            <img src="{{s_image}}" id="stagiaire-img" alt="stagaiaire pic">
+        </div>
+    </div>
+    <form method="post" enctype="multipart/form-data" id="update-form">
+        {% csrf_token %}
+        <table id="update">
+            <tr>
+                <td>{{ form.cne.label_tag}}</td>
+                <td>{{ form.cne}}</td>
+                <td>{{form.prenom.label_tag}}</td>
+                <td>{{form.prenom}}</td>
+            </tr>
+            <tr>
+                <td>{{form.nom.label_tag}}</td>
+                <td>{{form.nom}}</td>
+                <td>{{form.email.label_tag}}</td>
+                <td>{{form.email}}</td>
+            </tr>
+            <tr>
+                <td>{{form.sujet.label_tag}}</td>
+                <td>{{form.sujet}}</td>
+                <td>{{form.etablissement.label_tag}}</td>
+                <td>{{form.etablissement}}</td>
+            </tr>
+            <tr>
+                <td>{{form.S_Image.label_tag}}</td>
+                <td id="image-uploader">
+                    {{form.S_Image}}
+                    <label for="id_S_Image" id="upload-label">
+                        <i class="fas fa-cloud-upload-alt"></i> Choisir Une Image
+                    </label>
+                </td>
+                <td>{{form.cv.label_tag}}</td>
+                <td id="cv-uploader">
+                    {{form.cv}}
+                    <label for="id_cv" id="upload-label">
+                        <i class="fas fa-cloud-upload-alt"></i>Choisir Un C.V
+                    </label>
+                </td>
+            </tr>
+        </table>
+        <div class="sep"></div>
+        <div class="trainee-submit-btns">
+            <input type="submit" value="Soumettre">
+            <input type="reset" value="Réinitialiser" style="padding: 18px 18px">
+        </div>
+    </form>
+</div>
+<script>
+    document.querySelector("#id_S_Image").onchange = function () {
+        document.querySelector("#file-name").textContent = this.files[0].name;
+    }
+    document.querySelector("#id_cv").onchange = function () {
+        document.querySelector("#file-name").textContent = this.files[0].name;
+    }
+</script>
+<script>
+    $("#image-uploader").children().not("#id_S_Image, #upload-label").remove();
+    $("#cv-uploader").children().not("#id_cv, #upload-label").remove();
+    $('#image-uploader').contents().filter(function () {
+        return this.nodeType === 3;
+    }).remove();
+    $('#cv-uploader').contents().filter(function () {
+        return this.nodeType === 3;
+    }).remove();
+    $(document).ready(function () {
+        $("#id_sujet").attr("cols", "15");
+
+    });
+</script>
+{% endblock updateform %}

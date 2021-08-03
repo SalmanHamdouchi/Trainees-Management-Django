@@ -1,0 +1,153 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/layout.css' %}">
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/modal.css' %}">
+    <link rel="stylesheet" href="{% static 'css/absensce.css' %}">
+    <link rel="stylesheet" href="{% static 'css/update.css' %}">
+    <link rel="stylesheet" href="{% static 'css/ajout.css' %}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+    <scipt src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js">
+    </scipt>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js">
+    </script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
+
+    <script>
+        var pre = '<i class="fas fa-angle-left"></i>';
+        var nxt = '<i class="fas fa-angle-right"></i>';
+        $(document).ready(function () {
+            $('#table_id').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'pdfHtml5',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4]
+                        }
+                    },
+                    {
+                        extend: 'excelHtml5',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4]
+                        }
+                    },
+                ],
+                language: {
+                    paginate: {
+                        previous: pre,
+                        next: nxt
+                    },
+                    aria: {
+                        paginate: {
+                            previous: 'hellp',
+                            next: 'Next'
+                        }
+                    }
+                },
+                "columns": [{
+                    "width": "20%"
+                },
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+                ],
+                "initComplete": () => {
+                    $("#table_id").show();
+                }
+            });
+            $(".edit").tooltip({
+                trigger: 'hover'
+            });
+            $(".delete").tooltip({
+                trigger: 'hover'
+            });
+            $(".fa-times").tooltip({
+                trigger: 'hover'
+            });
+        });
+    </script>
+    <script>
+        window.addEventListener('load', function () {
+            document.body.classList.remove("preload");
+        });
+    </script>
+    <meta charset="UTF-8">
+    <title> {% block title %} Profile {% endblock %} </title>
+    <link rel="stylesheet" href="{% static 'css/trainees.css' %}">
+</head>
+<body class="preload">
+
+<div class="sideBar">
+    <ul>
+
+        <a href="{% url 'profile' %}">
+            <li>
+                <i class="fas fa-user"></i>
+                <p>Mon Profile</p>
+            </li>
+        </a>
+
+        <a href="{% url 'stagiaire_list' %}">
+            <li>
+                <i class="fas fa-users"></i>
+                <p>Afficher Les Stagiaires</p>
+            </li>
+        </a>
+
+        <a href="{% url 'ajout' %}">
+            <li>
+                <i class="fas fa-user-plus"></i>
+                <p>Ajouter Un Stagiaire</p>
+            </li>
+        </a>
+
+        <a href="{% url 'absence' %}">
+            <li>
+                <i class="far fa-calendar-times"></i>
+                <p>Abscense d'un Stagiare</p>
+            </li>
+        </a>
+
+    </ul>
+</div>
+<div class="main-container" id="overflowContent">
+
+    <div class="main-content">
+        {% block form_ajout %}
+        {% endblock form_ajout %}
+        {% block form_supp %}
+        {% endblock form_supp %}
+        {% block absence %}
+        {% endblock absence %}
+        {% block form_update %}
+        {% endblock form_update %}
+        {% block profile %}
+        {% endblock profile %}
+        {% block trainees %}
+        {% endblock trainees %}
+        {% block updateform %}
+        {% endblock updateform %}
+    </div>
+</div>
+<script>
+
+</script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+{% extends 'admin_/layout.html' %}
+{% load static %}
+{% block title %}Ajouter Un Stagiare{% endblock %}
+
+{% block form_ajout %}
+<div class="topBar">
+    <ul>
+        <a href="{% url 'profile' %}">
+            <li class="admin">
+                <p id="greeting">Hi, {{ Admin.prenom }}</p>
+                <img src="{{Admin.A_Image.url}}" alt="">
+            </li>
+        </a>
+        <a href="{% url 'logout' %}">
+            <li>
+                <div class="log-out">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <p>Log Out</p>
+                </div>
+            </li>
+        </a>
+    </ul>
+</div>
+<div class="pd25">
+    <div class="title">
+        <p>
+            Ajouter Un Stagiare
+        </p>
+    </div>
+    <form method="post" enctype="multipart/form-data" id="ajout-form">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <table id="ajout">
+
+            {% csrf_token %}
+            {{ form.email.errors }}
+            <tr>
+                <td>{{ form.cne.label_tag}}</td>
+                <td>{{ form.cne}}</td>
+                <td>{{form.prenom.label_tag}}</td>
+                <td>{{form.prenom}}</td>
+            </tr>
+            <tr>
+                <td>{{form.nom.label_tag}}</td>
+                <td>{{form.nom}}</td>
+                <td>{{ form.email.label_tag}}</td>
+                <td>{{ form.email }}</td>
+            </tr>
+
+            <tr>
+                <td>{{form.sujet.label_tag}}</td>
+                <td>{{form.sujet}}</td>
+                <td>{{form.etablissement.label_tag}}</td>
+                <td>{{form.etablissement}}</td>
+            </tr>
+            <tr>
+                <td>{{form.image.label_tag}}</td>
+                <td class="disp-none">{{form.image}}</td>
+
+                <td id="text-left">
+                    <label for="id_image" id="upload-label">
+                        <i class="fas fa-cloud-upload-alt"></i> Choisir Une Image
+                    </label>
+                    <span id="s-image-name"></span>
+                </td>
+
+                <td>{{form.cv.label_tag}}</td>
+                <td class="disp-none">{{form.cv}}</td>
+                <td id="text-left">
+                    <label for="id_cv" id="upload-label">
+                        <i class="fas fa-cloud-upload-alt"></i>Choisir Un C.V
+                    </label>
+                    <span id="cv-name"></span>
+                </td>
+            </tr>
+        </table>
+
+        <div class="ajouter">
+            <input type="submit" value="Ajouter stagiaire"/>
+        </div>
+    </form>
+</div>
+<script>
+    document.querySelector("#id_image").onchange = function () {
+        document.querySelector("#s-image-name").textContent = this.files[0].name;
+    }
+    document.querySelector("#id_cv").onchange = function () {
+        document.querySelector("#cv-name").textContent = this.files[0].name;
+    }
+</script>
+{% endblock form_ajout %}

@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#id_username").attr("placeholder", "Username");
+            $("#id_username").removeAttr("autofocus");
+            $("#id_password").attr("placeholder", "Mot De Passe");
+        });
+    </script>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+</head>
+<body>
+<div class="bg-img"></div>
+<div class="container">
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form}}
+        <input type="checkbox" id="check" name="check" value=""/>
+        <label for="check">
+            <span><!-- Don't delete this span --></span>
+            <p>Se Souvenir De Moi</p>
+        </label>
+        <input type="submit" value="LOGIN"/>
+    </form>
+</div>
+</body>
+<script>
+    if (($(".errorlist").length)) {
+        $(".errorlist").attr('id', "error");
+        $("#error li").html("Username ou Mot De Passe est incorrect");
+        $("#id_username").css("box-shadow", "#e0102394 0px 0px 3px 1px");
+        $("#id_username").css("border", "0.8px solid #e01023d4");
+        $("#id_password").css("box-shadow", "0px 0 3px 1px #e0102394");
+        $("#id_password").css("border", "0.8px solid #e01023d4");
+    }
+</script>
+</html>

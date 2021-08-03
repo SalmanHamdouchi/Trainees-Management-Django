@@ -1,0 +1,84 @@
+{% extends 'admin_/layout.html' %}
+{% load static %}
+{% block title %}Les Stagiaires{% endblock %}
+
+{% block trainees %}
+<div class="topBar">
+    <ul>
+        <a href="{% url 'profile' %}">
+            <li class="admin">
+                <p id="greeting">Hi, {{ Admin.prenom }}</p>
+                <img src="{{Admin.A_Image.url}}" alt="">
+            </li>
+        </a>
+        <a href="{% url 'logout' %}">
+            <li>
+                <div class="log-out">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <p>Log Out</p>
+                </div>
+            </li>
+        </a>
+    </ul>
+</div>
+<div class="pd25">
+    <div class="trainee-page-title">
+        <p>
+            La Liste Des Stagiaires
+        </p>
+    </div>
+    <div class="trainees-tab">
+        <table id="table_id" class="row-border order-column hover cell-border ">
+            <thead>
+            <tr>
+                <th>Stagiaire</th>
+                <th>CNE</th>
+                <th>E-mail</th>
+                <th>Sujet</th>
+                <th>Etablissement</th>
+                <th>C.V</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for stagiaire in stagiaires %}
+            <tr>
+                <td>
+                    <div class="trainee-name">
+                        <img src="{{stagiaire.S_Image.url}}" alt="stagiaire_image">
+                        <span style='margin-left: 11px;'>{{stagiaire.prenom}} {{stagiaire.nom}}</span>
+                    </div>
+                </td>
+                <td>{{stagiaire.cne}}</td>
+                <td id="email">{{stagiaire.email}}</td>
+                <td>{{stagiaire.sujet}}</td>
+                <td>{{stagiaire.etablissement}}</td>
+                <td><a href="{{stagiaire.cv.url}}">C.V de {{stagiaire.prenom}}</a></td>
+                <td>
+                    <div class="actions">
+                        <a href="javascript:void(0)">
+                            <a href="update/{{stagiaire.cne}}">
+                                <i class="far edit fa-edit" title="Modifier"></i>
+                            </a>
+                        </a>
+                        <a href="supp/{{stagiaire.cne}}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce stagiaire?')">
+                            <i class="far delete fa-trash-alt" title="Supprimer"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div id="overlay"></div>
+</div>
+<script src="{% static 'js/pop-up.js' %}"></script>
+<script>
+    $(document).ready(function () {
+        $(".buttons-pdf").children('span').prepend("<i class='fas fa-file-pdf'></i>");
+        $(".buttons-excel").children('span').prepend('<i class="fas fa-file-excel"></i>');
+    });
+</script>
+{% endblock trainees %}

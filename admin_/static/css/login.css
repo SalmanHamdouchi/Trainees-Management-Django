@@ -1,0 +1,234 @@
+@font-face {
+    font-family: font;
+    src: url(../fonts/Quicksand.ttf);
+}
+
+@font-face {
+    font-family: poppins;
+    src: url(../fonts/Poppins-Regular.ttf);
+}
+
+body {
+    font-family: poppins;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+}
+
+.bg-img {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: url(../img/s.jpg);
+    filter: blur(4px);
+    transform: scale(1.1);
+    overflow: hidden;
+}
+
+.container {
+    height: 74%;
+    position: relative;
+    width: 25%;
+    margin: auto;
+    box-shadow: 0 0 20px 2px #000;
+    background-color: #e2e2e240;
+}
+
+form {
+    padding: 140px 0;
+}
+
+input::placeholder {
+    color: #d6d6d6;
+}
+
+input[type=text],
+input[type=password] {
+    transition: .5s all ease;
+}
+
+label[for=id_username],
+label[for=id_password] {
+    display: none;
+}
+
+input {
+    display: block;
+    padding: 14px 10px;
+    width: 60%;
+    margin: 20px auto;
+    border-radius: 5px;
+    color: #d6d6d6;
+    background-color: transparent;
+    border: 1px solid #d6d6d6;
+}
+
+input[type=submit] {
+    font-family: font;
+    margin-top: 40px;
+    width: 65.2%;
+    background-color: #3e3e3e;
+    font-size: 17px;
+    font-weight: 700;
+    border: none;
+    box-shadow: 0 -5px 0 rgba(0, 0, 0, 0.40) inset;
+    outline: none;
+    cursor: pointer;
+    background-position: center;
+    transition: .4s all ease;
+}
+
+input[type=submit]:hover {
+    background-color: #4d4d4d;
+}
+
+input[type=submit]:active {
+    background-color: #222222;
+    background-size: 100%;
+    transition: background-color .4s ease;
+
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    outline: 0;
+    box-shadow: 0px 0 5px 1px #323441;
+    border: .8px solid #323441;
+}
+
+label {
+    display: block;
+    width: 65%;
+    color: #d6d6d6;
+    cursor: pointer;
+    margin: 0 auto;
+}
+
+label span {
+    display: inline-block;
+    position: relative;
+    background-color: transparent;
+    width: 15px;
+    height: 15px;
+    transform-origin: center;
+    border: 2px solid #d6d6d6;
+    border-radius: 3px;
+    vertical-align: -6px;
+    margin-right: 10px;
+    transition: background-color 150ms 200ms,
+    transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);
+}
+
+label span:before {
+    content: "";
+    width: 0px;
+    height: 2px;
+    border-radius: 2px;
+    background: #171717;
+    position: absolute;
+    transform: rotate(45deg);
+    top: 7px;
+    left: 3px;
+    transition: width 50ms ease 50ms;
+    transform-origin: 0% 0%;
+}
+
+label span:after {
+    content: "";
+    width: 0;
+    height: 2px;
+    border-radius: 2px;
+    background: #171717;
+    position: absolute;
+    transform: rotate(305deg);
+    top: 11px;
+    left: 5px;
+    transition: width 50ms ease;
+    transform-origin: 0% 0%;
+}
+
+/*
+label:hover span:before {
+  width: 5px;
+  transition: width 100ms ease;
+}
+label:hover span:after {
+  width: 10px;
+  transition: width 150ms ease 100ms;
+}
+*/
+
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="checkbox"]:checked + label span {
+    background-color: #d6d6d6;
+    transform: scale(1.25);
+}
+
+input[type="checkbox"]:checked + label span:after {
+    width: 10px;
+    background: #171717;
+    transition: width 150ms ease 100ms;
+}
+
+input[type="checkbox"]:checked + label span:before {
+    width: 5px;
+    background: #171717;
+    transition: width 150ms ease 100ms;
+}
+
+input[type="checkbox"]:checked + label:hover span {
+    background-color: #d6d6d6;
+    transform: scale(1.25);
+}
+
+input[type="checkbox"]:checked + label:hover span:after {
+    width: 10px;
+    background: #171717;
+    transition: width 150ms ease 100ms;
+}
+
+input[type="checkbox"]:checked + label:hover span:before {
+    width: 5px;
+    background: #171717;
+    transition: width 150ms ease 100ms;
+}
+
+label p {
+    display: inline;
+    color: #d6d6d6;
+    font-size: 14px;
+    position: relative;
+    top: 2px;
+}
+
+.errorlist li {
+    font-size: 12.5px;
+    list-style: none;
+    color: #e6e6e6;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #dc2a3a;
+}
+
+@media only screen and (max-width: 1366px) {
+    .errorlist {
+        width: 67.5%;
+        top: 14%;
+    !important;
+        left: 16%;
+    !important;
+    }
+}
+
+.errorlist {
+    padding: 0;
+    position: absolute;
+    top: 14%;
+    left: 17%;
+}

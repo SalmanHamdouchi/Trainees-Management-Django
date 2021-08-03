@@ -1,0 +1,157 @@
+{% extends 'admin_/layout.html' %}
+{% load static %}
+{% block profile %}
+<div class="topBar">
+    <ul>
+        <a href="{% url 'profile' %}">
+            <li class="admin">
+                <p id="greeting">Hi, {{ Admin.prenom }}</p>
+                <img src="{{Admin.A_Image.url}}" alt="">
+            </li>
+        </a>
+        <a href="{% url 'logout' %}">
+            <li>
+                <div class="log-out">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <p>Log Out</p>
+                </div>
+            </li>
+        </a>
+    </ul>
+</div>
+<div class="pd25">
+    <div class="title">
+        <p>Votre Profile </p>
+    </div>
+    <div class="info">
+        <div class="personal-info">
+          <span>
+            <img src='{{Admin.A_Image.url}}' alt="admine_image" id="admin-img">
+          </span>
+            <span id="admin-name">
+            {{ Admin.prenom }}  {{ Admin.nom }}
+          </span>
+            <span class="admin-title">Administrateur</span>
+        </div>
+
+        <div class="contact-info">
+            <div class="phone">
+                <i class="fas fa-phone-alt"></i>
+                <p>{{Admin.Numero_De_Telephone}}</p>
+            </div>
+
+            <div class="email">
+                <i class="fas fa-envelope"></i>
+                <p>{{ Admin.email }}</p>
+            </div>
+
+            <div class="linkedin">
+                <i class="fab fa-linkedin"></i>
+                <p>{{ Admin.prenom }} {{ Admin.nom }}</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="settings">
+        <div class="choices">
+            <a href="javascript:void(0)" class="tab-btn" onclick="showTab(0)">
+                <div id="perso-btn">
+                    <i class="far fa-user"></i>
+                    <p>Informations Personnelles</p>
+                </div>
+            </a>
+            <a href="javascript:void(0)" class="tab-btn" onclick="showTab(1)">
+                <div id="pass-btn">
+                    <i class="fas fa-unlock-alt"></i>
+                    <p>Changer Le Mot De Passe</p>
+                </div>
+            </a>
+
+        </div>
+        <div class="changing-container">
+            <div class="panel" id="perso">
+                <div class="personal-info-title">
+                    <h3>Informations Personnelles
+                        <small>mettre à jour vos informations personnelles</small>
+                    </h3>
+                </div>
+                <div class="sep1"></div>
+                <div class="sep2"></div>
+
+                <form action="" method="post" class="perso-info-changes" enctype="multipart/form-data" label_suffix="">
+                    <table>
+                        {% csrf_token %}
+                        <table id="admin-form">
+                            <tr>
+                                <td>{{form.cin.label_tag}}</td>
+                                <td>{{form.cin}}</td>
+                            </tr>
+                            <tr>
+                                <td>{{form.prenom.label_tag}}</td>
+                                <td>{{form.prenom}}</td>
+                            </tr>
+                            <tr>
+                                <td>{{form.nom.label_tag}}</td>
+                                <td>{{form.nom}}</td>
+                            </tr>
+                            <tr>
+                                <td>{{form.email.label_tag}}</td>
+                                <td>{{form.email}}</td>
+                            </tr>
+                            <tr>
+                                <td>{{form.Numero_De_Telephone.label_tag}}</td>
+                                <td>{{form.Numero_De_Telephone}}</td>
+                            </tr>
+                            <tr>
+                                <td style="padding-top: 15px;">{{form.A_Image.label_tag}}</td>
+                                <td class="disp-none">{{form.A_Image}}</td>
+                                <td id="text-left" style="
+                          padding-top: 15px;">
+                                    <label for="id_A_Image" id="upload-label">
+                                        <i class="fas fa-cloud-upload-alt"></i> Choisir Une Image
+                                    </label>
+                                    <span id="file-name"></span>
+
+                                </td>
+                            </tr>
+                        </table>
+
+                        <div class="btns">
+                            <input type="submit" value="Soumettre">
+                            <input type="reset" value="Réinitialiser">
+                        </div>
+                </form>
+            </div>
+
+            <div class="pass-change-container panel" id="pass">
+                <h3 id="pass-change-title">Changer Le Mot De Passe</h3>
+                <div class="separator1"></div>
+                <div class="separator2"></div>
+                <form action="{% url 'change_password' %}" method="post" class="pass-change" enctype="multipart/form-data">
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    {% csrf_token %}
+                    {{ form2 }}
+                    <div class="btns btns-resp">
+                        <input type="submit" value="Changer Le Mot de Passe">
+                        <input type="reset" value="Réinitialiser">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+    document.querySelector("#id_A_Image").onchange = function () {
+        document.querySelector("#file-name").textContent = this.files[0].name;
+    }
+</script>
+<script src="{% static 'js/tabs.js' %}"></script>
+{% endblock profile %}
